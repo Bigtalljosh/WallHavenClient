@@ -32,6 +32,6 @@ jobs:
     - name: Test
       run: dotnet test --verbosity normal
     - name: Pack
-      run: dotnet pack --configuration Release --include-symbols --include-source --no-build /p:PackageVersion='${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.PATCH_VERSION }}'
+      run: dotnet pack --configuration Release --include-symbols --include-source --no-build /p:PackageVersion='${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.PATCH_VERSION }}' -o nupkg
     - name: Push to NuGet
       run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
