@@ -20,8 +20,4 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\WallHaven.Client\WallHavenClient.csproj" />
-    </ItemGroup>
-
 </Project>
