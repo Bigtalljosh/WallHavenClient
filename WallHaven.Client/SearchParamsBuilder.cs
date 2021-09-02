@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace WallHaven.Client
+namespace WallHavenClient
 {
     public enum Sorting
     {
@@ -18,10 +18,20 @@ namespace WallHaven.Client
         asc = 2
     }
 
+    public enum TopRange
+    {
+        _1d = 1,
+        _3d = 2,
+        _1w = 3,
+        _1M = 4,
+        _3M = 5,
+        _6M = 6,
+        _1y = 7
+    }
+
     public class SearchParamsBuilder
     {
-        private int _minWidth;
-        private int _minHeight;
+        private string? _apiKey;
         private bool _searchGeneral;
         private bool _searchAnime;
         private bool _searchPeople;
@@ -30,16 +40,19 @@ namespace WallHaven.Client
         private bool _searchNSFW;
         private Sorting _sorting;
         private OrderBy _orderBy;
+        private TopRange _topRange;
+        private int _minWidth;
+        private int _minHeight;
+        private List<string> _resolutions = new();
+        private List<string> _ratios = new();
 
         public string Build()
         {
             StringBuilder builder = new();
 
-            builder.Append($"?");
-
-            if (_minHeight is not 0 && _minWidth is not 0)
+            if (!string.IsNullOrEmpty(_apiKey))
             {
-                builder.Append($"&atleast={_minWidth}x{_minHeight}");
+                builder.Append($"&apikey={_apiKey}");
             }
 
             string categories = string.Empty;
@@ -57,21 +70,52 @@ namespace WallHaven.Client
             builder.Append($"&sorting={_sorting}");
             builder.Append($"&order={_orderBy}");
 
+            if(_sorting is Sorting.toplist)
+            {
+                builder.Append($"&topRange={_topRange.ToString().Replace("_", "")}");
+            }
 
-            // Remove first & and replace with ?
-            //var finalQueryString = builder.ToString();
-            //if (finalQueryString[0] is '&')
-            //{
-            //    finalQueryString = finalQueryString.Substring(1, finalQueryString.Length);
-            //}
+            if (_minHeight is not 0 && _minWidth is not 0)
+            {
+                builder.Append($"&atleast={_minWidth}x{_minHeight}");
+            }
 
-            //if (finalQueryString[0] is not '?')
-            //{
-            //    return $"?{finalQueryString}";
-            //}
+            if (_resolutions.Count > 0)
+            {
+                StringBuilder resolutionBuilder = new();
+                foreach (var resolution in _resolutions)
+                {
+                    resolutionBuilder.Append($",{resolution}");
+                }
 
-            //return finalQueryString;
-            return builder.ToString();
+                var finalResolutionString = resolutionBuilder.ToString();
+                finalResolutionString.Remove(0, 1);
+                builder.Append(finalResolutionString);
+            }
+
+            if (_ratios.Count > 0)
+            {
+                StringBuilder ratioBuilder = new();
+                foreach (var ratio in _ratios)
+                {
+                    ratioBuilder.Append($",{ratio}");
+                }
+
+                var finalRatioString = ratioBuilder.ToString();
+                finalRatioString.Remove(0, 1);
+                builder.Append(finalRatioString);
+            }
+
+            var finalQueryString = builder.ToString();
+            finalQueryString = finalQueryString.Remove(0, 1); // Remove first &
+            finalQueryString = finalQueryString.Insert(0, "?");
+            return finalQueryString;
+        }
+
+        public SearchParamsBuilder WithApiKey(string apiKey)
+        {
+            _apiKey = apiKey;
+            return this;
         }
 
         public SearchParamsBuilder WithMinimumResolution(int width, int height)
@@ -126,6 +170,24 @@ namespace WallHaven.Client
         public SearchParamsBuilder OrderBy(OrderBy orderBy)
         {
             _orderBy = orderBy;
+            return this;
+        }
+
+        public SearchParamsBuilder SelectTop(TopRange topRange)
+        {
+            _topRange = topRange;
+            return this;
+        }
+
+        public SearchParamsBuilder WithResolutions(List<string> resolutions)
+        {
+            _resolutions = resolutions;
+            return this;
+        }
+
+        public SearchParamsBuilder WithRatios(List<string> ratios)
+        {
+            _ratios = ratios;
             return this;
         }
     }

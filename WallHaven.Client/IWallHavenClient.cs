@@ -1,4 +1,4 @@
-﻿namespace WallHaven.Client
+﻿namespace WallHavenClient
 {
     public interface IWallHavenClient
     {

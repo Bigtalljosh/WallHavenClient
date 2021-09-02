@@ -1,10 +1,8 @@
-﻿namespace WallHaven.Client
+﻿namespace WallHavenClient
 {
     public record Config
     {
-        public string APIKey { get; init; }
+        public string? APIKey { get; init; }
         public string BaseUrl { get; init; }
-        public int MinHeight { get; init; }
-        public int MinWidth { get; init; }
     }
 }

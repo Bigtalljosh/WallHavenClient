@@ -1,8 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Haven", "Haven\Haven.csproj", "{E9F013D9-A3F6-4343-825D-CD4A5CAA9F52}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Haven.Runner", "Haven\Haven.Runner.csproj", "{E9F013D9-A3F6-4343-825D-CD4A5CAA9F52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WallHaven.Client", "WallHaven.Client\WallHaven.Client.csproj", "{362B048E-01C9-4724-8ED7-C512089FE816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WallHavenClient", "WallHaven.Client\WallHavenClient.csproj", "{362B048E-01C9-4724-8ED7-C512089FE816}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +21,11 @@ Global
 		{362B048E-01C9-4724-8ED7-C512089FE816}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{362B048E-01C9-4724-8ED7-C512089FE816}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{362B048E-01C9-4724-8ED7-C512089FE816}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A788DF6D-2A37-4FE8-AE55-65FED2699502}
 	EndGlobalSection
 EndGlobal

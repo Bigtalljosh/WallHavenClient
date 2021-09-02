@@ -1,17 +1,16 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WallHaven.Client;
+using WallHavenClient;
 
-namespace Haven.Core
+namespace Haven.Runner
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger _logger;
         private readonly IWallHavenClient _wallHavenClient;
         private readonly string _searchParams;
+        private readonly ILogger _logger;
 
-
-        public Worker(ILogger<Worker> logger, IWallHavenClient wallHavenClient)
+        public Worker(IWallHavenClient wallHavenClient, ILogger<Worker> logger)
         {
             _searchParams = new SearchParamsBuilder()
                 .WithMinimumResolution(3440, 1440)
@@ -25,20 +24,17 @@ namespace Haven.Core
                 .SortBy(Sorting.date_added)
                 .Build();
 
-            _logger = logger;
             _wallHavenClient = wallHavenClient;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var result = await _wallHavenClient.Search(_searchParams);
-
             _logger.LogInformation($"Number of results: {result.Data.Count}");
 
             foreach (var wallpaper in result.Data)
-            {
                 _logger.LogInformation($"{wallpaper.Url}");
-            }
         }
     }
 }
