@@ -6,9 +6,15 @@ namespace WallHavenClient
     {
         private readonly HttpClient _client;
 
-        public WallHavenClient(HttpClient client)
+        public WallHavenClient(HttpClient client, Config config)
         {
             _client = client;
+            _client.BaseAddress = new Uri(config.BaseUrl);
+
+            if (config.APIKey is not null)
+            {
+                _client.DefaultRequestHeaders.Add("X-API-Key", config.APIKey);
+            }
         }
 
         public async Task<WallHavenResponse> GetWallpaper(string wallpaperId)
