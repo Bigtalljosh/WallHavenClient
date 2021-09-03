@@ -3,6 +3,14 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <PackageTags>WallHaven</PackageTags>
+        <Version>0.0.0</Version>
+        <Summary>Simple Client Wrapper around the WallHaven API</Summary>
+        <Description>Providing a fluent API to search for the wallpapers you want from WallHaven</Description>
+        <PackageProjectUrl>https://github.com/Bigtalljosh/WallHavenClient</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/Bigtalljosh/WallHavenClient/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/Bigtalljosh/WallHavenClient</RepositoryUrl>
     </PropertyGroup>
 
 </Project>

@@ -5,7 +5,7 @@
 
 # WallHavenClient
 
-WallHavenClient is a simple wrapped around the [WallHaven](https://wallhaven.cc/) API.
+WallHavenClient is a simple wrapper around the [WallHaven](https://wallhaven.cc/) API.
 There's a fluent query builder to simplify getting you the wallpapers you want.
 
 I've wrote this as a very quick thing to run in a background app to keep my desktop wallpaper updating on an interval.
@@ -58,4 +58,55 @@ Please raise issues and feel free to submit PRs (happy to discuss in an issue fi
 
 ## Examples
 
-Todo...
+```csharp
+var _searchParams = new SearchParamsBuilder()
+                  .WithMinimumResolution(3440, 1440)
+                  .IncludeGeneral(true)
+                  .IncludeAnime(false)
+                  .IncludePeople(false)
+                  .IncludeSafe(true)
+                  .IncludeSketchy(false)
+                  .IncludeNSFW(false)
+                  .OrderBy(OrderBy.desc)
+                  .SortBy(Sorting.date_added)
+                  .Build();
+
+var result = await _wallHavenClient.Search(_searchParams);
+```
+
+Which should return you a result like :
+
+```json
+{
+  "id": "e7ww6r",
+  "url": "https://wallhaven.cc/w/e7ww6r",
+  "short_url": "https://whvn.cc/e7ww6r",
+  "uploader": null,
+  "views": 5,
+  "favorites": 3,
+  "source": "https://www.artstation.com/pan",
+  "purity": "sfw",
+  "category": "general",
+  "dimension_x": 3840,
+  "dimension_y": 2160,
+  "resolution": "3840x2160",
+  "ratio": "1.78",
+  "file_size": 7417712,
+  "file_type": "image/jpeg",
+  "created_at": "2021-09-03 20:05:14",
+  "colors": [
+    "#424153",
+    "#000000",
+    "#999999",
+    "#663399",
+    "#663300"
+  ],
+  "path": "https://w.wallhaven.cc/full/e7/wallhaven-e7ww6r.jpg",
+  "thumbs": {
+    "large": "https://th.wallhaven.cc/lg/e7/e7ww6r.jpg",
+    "original": "https://th.wallhaven.cc/orig/e7/e7ww6r.jpg",
+    "small": "https://th.wallhaven.cc/small/e7/e7ww6r.jpg"
+  },
+  "tags": null
+}
+```
