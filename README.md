@@ -1,7 +1,7 @@
 [![NuGet version (WallHavenClient)](https://img.shields.io/nuget/v/WallHavenClient.svg?style=flat-square)](https://www.nuget.org/packages/WallHavenClient/)
 [![Nuget](https://img.shields.io/nuget/dt/WallHavenClient?logo=nuget&style=flat-square)](https://www.nuget.org/packages/WallHavenClient/)
 [![.NET](https://github.com/Bigtalljosh/WallHavenClient/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Bigtalljosh/WallHavenClient/actions/workflows/dotnet.yml)
-[![MIT License](https://img.shields.io/github/license/dotnet/aspnetcore?color=%230b0&style=flat-square)](https://github.com/Bigtalljosh/WallHavenClient/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/Bigtalljosh/WallHavenClient/blob/main/LICENSE)
 
 # WallHavenClient
 
