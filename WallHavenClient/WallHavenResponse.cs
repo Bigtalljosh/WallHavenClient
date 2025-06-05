@@ -14,7 +14,7 @@ namespace WallHavenClient
 
         [JsonPropertyName("last_page")] public int LastPage { get; set; }
 
-        [JsonPropertyName("per_page")] public int PerPage { get; set; }
+        [JsonPropertyName("per_page")] public object PerPage { get; set; }
 
         [JsonPropertyName("total")] public int Total { get; set; }
 
