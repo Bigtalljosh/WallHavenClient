@@ -1,8 +1,9 @@
-﻿namespace WallHavenClient
+﻿using System.Threading.Tasks;
+
+namespace WallHavenClient;
+
+public interface IWallHavenClient
 {
-    public interface IWallHavenClient
-    {
-        Task<WallHavenResponse> GetWallpaper(string id);
-        Task<WallHavenResponse> Search(string searchParams);
-    }
+    Task<WallHavenResponse> GetWallpaper(string id);
+    Task<WallHavenResponse> Search(string searchParams);
 }
