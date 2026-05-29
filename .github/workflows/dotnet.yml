@@ -34,4 +34,5 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release --include-symbols --include-source --no-build /p:PackageVersion='${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.PATCH_VERSION }}' -o nupkg
     - name: Push to NuGet
+      if: github.event_name == 'push'
       run: dotnet nuget push ./nupkg/*.nupkg --source $NUGET_FEED --api-key $NUGET_KEY --skip-duplicate
