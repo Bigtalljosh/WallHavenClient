@@ -83,28 +83,12 @@ public class SearchParamsBuilder
 
         if (_resolutions.Count > 0)
         {
-            StringBuilder resolutionBuilder = new();
-            foreach (var resolution in _resolutions)
-            {
-                resolutionBuilder.Append($",{resolution}");
-            }
-
-            var finalResolutionString = resolutionBuilder.ToString();
-            finalResolutionString.Remove(0, 1);
-            builder.Append(finalResolutionString);
+            builder.Append($"&resolutions={string.Join(",", _resolutions)}");
         }
 
         if (_ratios.Count > 0)
         {
-            StringBuilder ratioBuilder = new();
-            foreach (var ratio in _ratios)
-            {
-                ratioBuilder.Append($",{ratio}");
-            }
-
-            var finalRatioString = ratioBuilder.ToString();
-            finalRatioString.Remove(0, 1);
-            builder.Append(finalRatioString);
+            builder.Append($"&ratios={string.Join(",", _ratios)}");
         }
 
         var finalQueryString = builder.ToString();
